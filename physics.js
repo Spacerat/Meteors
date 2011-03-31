@@ -140,10 +140,12 @@ physics.IntersectCircleWithLine = function(circle, line) {
 	
 	var res = [];
 	for (i=0;i<p.length;i++) {
-		if (p[i].x < maxx && p[i].x > minx && p[i].y < maxy && p[i].y > miny) {
+		if (p[i].x <= maxx && p[i].x >= minx && p[i].y <= maxy && p[i].y >= miny) {
 			res.push(p[i]);
 		}
 	}
+	
+	if (res) console.log(res);
 	
 	return res;
 }
