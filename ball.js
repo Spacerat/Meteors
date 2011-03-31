@@ -17,7 +17,7 @@ behaivours.ball = {
     pair: function(ent) {
 		var col=false;
 		if (ent.collisiontype === "ball") 
-			col = physics.BallBallCollision(this, ent);
+			col = physics.BallBallCollision(this, ent, 0.6);
 		else if (ent.collisiontype === "line")
 			col = physics.BallLineCollision(this, ent);
 			
