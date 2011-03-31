@@ -9,7 +9,7 @@ classes.bouncer = function(pos1, pos2) {
 	this.lengthsqrd = (this.x2-this.x1)*(this.x2-this.x1) + (this.y2-this.y1) * (this.y2 - this.y1);
 	this.length = Math.sqrt(this.lengthsqrd);
 	
-	var life = Math.min(100000.0/this.length, 1000);
+	var life = Math.min(10000.0/Math.sqrt(this.length), 2000);
 	var liveuntil = (new Date()).getTime() + life;
 	setTimeout(function() {
 		that.Remove();
@@ -18,9 +18,11 @@ classes.bouncer = function(pos1, pos2) {
 	
 	this.Render = function(ctx) {
 		var a = (liveuntil - (new Date()).getTime())/life;
-		ctx.shadowColor = "blue";
+		if (!ctx.lowgfx) {
+			ctx.shadowColor = "rgba(0,0,255,"+a+")";
+			ctx.shadowBlur = 10;
+		}
 		ctx.strokeStyle = "rgba(0,0,255,"+a+")";
-		ctx.lineCap = "round";		
 		ctx.beginPath();
 		ctx.moveTo(this.x1, this.y1);
 		ctx.lineTo(this.x2,this.y2);
@@ -46,25 +48,34 @@ extend(classes.bouncer, classes.entity);
 classes.player = function() {
 	var startpos = null;
 	var mpos = null;
-	tools.addMouseListener(environment.canvas, document.body, 'mousedown', function(e, pos) {
+	tools.addMouseListener(environment.canvas, window, 'mousedown', function(e, pos) {
 		startpos = pos;
 	});
-	tools.addMouseListener(environment.canvas, document.body, 'mouseup', function(e, pos) {
+	document.body.addEventListener("touchstart", function(e) {
+		var pos = tools.getRelativeMousePos(e.touches[0], environment.canvas);
+		startpos = pos;
+	}, false);
+	tools.addMouseListener(environment.canvas, window, 'mousedown', function(e, pos) {
+		startpos = pos;
+	});
+	tools.addMouseListener(environment.canvas, window, 'mouseup', function(e, pos) {
 		var b = new classes.bouncer(startpos, pos);
 		b.Add();
 		startpos = null;
 		
 		
 	});
-	tools.addMouseListener(environment.canvas, document.body, 'mousemove', function(e, pos) {
+	tools.addMouseListener(environment.canvas, window, 'mousemove', function(e, pos) {
 		mpos = pos;
 	});
 	
 	this.Render = function(ctx) {
 		if (startpos) {
-			ctx.strokeStyle = "blue";
-			ctx.shadowColor = "blue";
-			ctx.shadowBlur = 10;
+			if (!ctx.lowgfx) {
+				ctx.shadowColor = "rgba(155,155,255,0.7)";
+				ctx.shadowBlur = 10;
+			}
+			ctx.strokeStyle = "rgba(155,155,255,0.7)";
 			ctx.beginPath();
 			ctx.moveTo(startpos.x, startpos.y);
 			ctx.lineTo(mpos.x, mpos.y);

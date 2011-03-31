@@ -31,7 +31,8 @@
 				
 				i.style.top = Math.floor(-c.height/1.5)+"px";
 				var clicked = false;
-				var listen = document.body.addEventListener('click',function() {
+				
+				var startfunc = function(e) {
 					if (clicked === true) return;
 					clicked = true;
 					i.style.opacity = 1;
@@ -44,8 +45,9 @@
 						}
 					},5);
 					g.startGame();
-				}, false);
-				
+				};
+				document.body.addEventListener('click', startfunc, false);
+				document.body.addEventListener('touchstart', startfunc, false);
 			};
 			
         </script>

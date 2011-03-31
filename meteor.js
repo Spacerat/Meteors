@@ -89,6 +89,7 @@ behaivours.meteor = {
 	},
 	render: function(ctx) {
 		if (!this.image) return;
+		ctx.shadowColor = 'transparent';
 		var spd = this.getSpeed();
 		var norm = {
 			x: (this.xvel / spd),
@@ -98,16 +99,17 @@ behaivours.meteor = {
 			x: -norm.y,
 			y: norm.x
 		};
-		
-		this.trail.update(this.x, this.y, tang.x, tang.y);
-		
-		ctx.fillStyle = "rgba(200,150,50,0.7)";
-		this.trail.doPath(ctx);
-		ctx.fill();
-		ctx.fillStyle = "rgba(255,170,59,0.7)";
-		this.trail.doPath(ctx, 0.5, 0.5);
-		ctx.fill();
-		
+		if (!ctx.lowgfx === true) {
+			this.trail.update(this.x, this.y, tang.x, tang.y);
+			
+			ctx.fillStyle = "rgba(200,150,50,0.7)";
+			this.trail.doPath(ctx);
+			ctx.fill();
+			ctx.fillStyle = "rgba(255,170,59,0.7)";
+			this.trail.doPath(ctx, 0.5, 0.5);
+			
+			ctx.fill();
+		}
 		ctx.drawImage(this.image, this.x - this.image.width/2, this.y - this.image.height/2);
 		
 		// this.x - this.radius * tang.x, this.y - this.radius * tang.y

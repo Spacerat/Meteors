@@ -9,6 +9,10 @@ game = function () {
 	var bbox = behaivours.boundingbox(0, -300, canvas.width, canvas.height + 100);
 	var grav = behaivours.gravity(150);	
 	var started = false;
+	ctx.lowgfx = false;
+	
+	ctx.lowgfx = (document.location.search.match(/lowgfx/) !== null);
+	
 	//Set some global variables
 	environment = {
 		ctx: ctx,
@@ -18,13 +22,14 @@ game = function () {
 		bbox: bbox,
 		gravity: 150,
 		score: 0,
-		spawned: 0
+		spawned: 0,
 	}
 	
     //Initialisation and the main loop, called when all images are finished loading.
     var begin = function() {
 		var b = (new classes.background(canvas, ctx));
 		b.Add();
+		
 		var p = (new classes.player());
         setInterval( function() {
 			var i;
