@@ -29,7 +29,7 @@
 				var i = document.getElementById("instructions");
 				i.style.position = "relative";
 				
-				i.style.top = -c.height/1.5;
+				i.style.top = Math.floor(-c.height/1.5)+"px";
 				var clicked = false;
 				var listen = document.body.addEventListener('click',function() {
 					if (clicked === true) return;
@@ -51,15 +51,13 @@
         </script>
 		<script src="game.js"> </script>
     </head>
-    <body class = "game-grad" ondragstart="return false;">
+    <body ondragstart="return false;">
 	<div id="canvdiv">
 	<canvas id="canvas" class="game-grad" width="500px" height="600px">
-	<div id="instructions" >
 	This game requires javascript and a modern browser capable of canvas rendering.
 	Try the latest versions of <a href="http://opera.com/">Opera</a>,
 	<a href = "http://google.com/chrome/">Google Chrome</a> or
 	<a href = "http://getfirefox.com/">Mozilla Firefox</a>.
-	</div>
 	</canvas>
 	<div id="instructions" >
 		<p> <strong> Instructions:</strong> Hold left click and drag to create forcefields underneath the meteors. Try to bounce them in to each other to destroy them. </p>
