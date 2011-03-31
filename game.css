@@ -1,0 +1,30 @@
+
+
+/* http://projects.korrelboom.com/gradient-generator/#top|#7db3dd|dceef2 */
+.game-grad {
+	/* Opera */
+	background: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxkZWZzPjxsaW5lYXJHcmFkaWVudCBpZD0iZ3JhZGllbnQiIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMCUiIHkyPSIxMDAlIj48c3RvcCBvZmZzZXQ9IjAlIiBzdHlsZT0ic3RvcC1jb2xvcjpyZ2JhKDEyNSwxNzksMjIxLDEpOyIgLz48c3RvcCBvZmZzZXQ9IjEwMCUiIHN0eWxlPSJzdG9wLWNvbG9yOnJnYmEoMjIwLDIzOCwyNDIsMSk7IiAvPjwvbGluZWFyR3JhZGllbnQ+PC9kZWZzPjxyZWN0IGZpbGw9InVybCgjZ3JhZGllbnQpIiBoZWlnaHQ9IjEwMCUiIHdpZHRoPSIxMDAlIiAvPjwvc3ZnPg==);
+
+	/* Firefox */
+	background: -moz-linear-gradient( top, rgba(125,179,221,1), rgba(220,238,242,1) );
+
+	/* Chrome & Safari */
+	background: -webkit-gradient( linear, left top, left bottom, color-stop( 0, rgba(125,179,221,1) ), color-stop( 1, rgba(220,238,242,1) ) );
+
+	/* IE5.5 - IE7 */
+	filter: progid:DXImageTransform.Microsoft.Gradient(GradientType=0,StartColorStr=#FF7DB3DD,EndColorStr=#FFDCEEF2);
+
+	/* IE8 */
+	-ms-filter: "progid:DXImageTransform.Microsoft.Gradient(GradientType=0,StartColorStr=#FF7DB3DD,EndColorStr=#FFDCEEF2)";
+}
+
+.canvdiv {
+	margin-left:auto;
+	margin-right:auto;
+	width: 500px;
+	
+}
+
+#canvas {
+	align: center;
+}
