@@ -15,18 +15,53 @@
 		<script src="player.js"> </script>
 		<script src="background.js"> </script>
 		<!-- Game -->
-		<script src="game.js"> </script>
+		
         <script> 
+			window.onload = function() {
+			
+				var g = new game();
+				var c = document.getElementById("canvas")
+				c.width = Math.min(window.innerWidth, 500);
+				var d = document.getElementById("canvdiv");
+				d.style.width = c.width;
+				c.height = Math.min(window.innerHeight, 600);
+				
+				var i = document.getElementById("instructions");
+				i.style.position = "relative";
+				
+				i.style.top = -c.height/1.5;
+				var clicked = false;
+				var listen = document.body.addEventListener('click',function() {
+					if (clicked === true) return;
+					clicked = true;
+					i.style.opacity = 1;
+					var tick = setInterval(function() {
+						i.style.opacity -= 0.01;
+						if (i.style.opacity <= 0.01) {
+							i.style.display = "none";
+							clearInterval(tick);
 
+						}
+					},5);
+					g.startGame();
+				}, false);
+				
+			};
+			
         </script>
+		<script src="game.js"> </script>
     </head>
-    <body>
-	<div class="canvdiv">
+    <body ondragstart="return false;">
+	<div id="canvdiv">
 	<canvas id="canvas" class="game-grad" width="500px" height="600px">
 	This game requires a modern browser capable of canvas rendering.
 	</canvas>
-	<p> <strong> Instructions:</strong> Hold left click and drag to create forcefields underneath the meteors. Try to bounce them in to each other to destroy them. </p>
-	<p> Currently, only 30 meteors will spawn. Eventually I will add other items/powerups/etc but for now there are only meteors.</p>
+	<div id="instructions" >
+		<p> <strong> Instructions:</strong> Hold left click and drag to create forcefields underneath the meteors. Try to bounce them in to each other to destroy them. </p>
+		<p> Currently, only 30 meteors will spawn. Eventually I will add other items/powerups/etc but for now there are only meteors.</p>
+		<p> See the code at <a target = "_blank" href = "https://github.com/Spacerat/Meteors">github</a> </p>
+	</div>
+
 	</div>
     </body>
 </html>

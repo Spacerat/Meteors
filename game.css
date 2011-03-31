@@ -18,7 +18,11 @@
 	-ms-filter: "progid:DXImageTransform.Microsoft.Gradient(GradientType=0,StartColorStr=#FF7DB3DD,EndColorStr=#FFDCEEF2)";
 }
 
-.canvdiv {
+body {
+	margin: 0;
+}
+
+#canvdiv {
 	margin-left:auto;
 	margin-right:auto;
 	width: 500px;
@@ -27,4 +31,13 @@
 
 #canvas {
 	align: center;
+}
+
+#instructions {
+	width: 80%;
+	margin-left: auto;
+	margin-right: auto;
+	background-color: rgba(255, 255, 255, 0.7);
+	padding: 1em;
+	border: thick black solid;
 }
